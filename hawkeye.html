@@ -17,16 +17,62 @@
 	<div id='mapDiv'></div>
 	<script type="text/javascript">
 		(function () {
-			function GetMap() {
-				var map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
-					credentials:"Au_kHqNbZbddwJUaoPTz-tfjHTfZtuPYiBifygz7YU3Y8QpyERxo_Qs2tnitGcGn",
-					center: new Microsoft.Maps.Location(45.5, -122.5),
-                    mapTypeId: Microsoft.Maps.MapTypeId.road,
-                    zoom: 10
-				});
+			var map;
+			
+			Microsoft.Maps.loadModule('Microsoft.Maps.Themes.BingTheme', { callback: themesModuleLoaded });
+			function themesModuleLoaded() {
+				Microsoft.Maps.loadModule('Microsoft.Maps.Overlays.Style', { callback: GetMap });
 			}
-	
-			window.onload=GetMap;
+
+			function shapesModuleLoaded() {
+				var options = {
+					fillColor: new Microsoft.Maps.Color(100, 255, 100, 0),
+					strokeColor: new Microsoft.Maps.Color(50, 255, 100, 0),
+					strokeThickness: 1
+				};
+				var vertices = [
+					new Microsoft.Maps.Location(41.885763, -87.635316),
+					new Microsoft.Maps.Location(41.883686, -87.635273),
+					new Microsoft.Maps.Location(41.884980, -87.633363),
+					new Microsoft.Maps.Location(41.885763, -87.635316)
+				];
+				var polygonWithHoles = new Microsoft.Maps.Polygon(vertices, options);
+         		map.entities.push(polygonWithHoles);
+			}
+
+			function makeInfobox(pushpin, imgsrc) {
+				var options = {
+					htmlContent: '<img src="' + imgsrc + '" style=\"width: 50%;\" />',
+					pushpin: pushpin
+				};
+				var infobox = new Microsoft.Maps.Infobox(pushpin.getLocation(), options);
+         		map.entities.push(infobox);
+				return infobox;
+			}
+
+			function insertPins() {
+				var location = new Microsoft.Maps.Location(41.884763, -87.634316);
+				var pushpin = new Microsoft.Maps.Pushpin(location);
+				var infobox = makeInfobox(pushpin, "http://twt-thumbs.washtimes.com/media/image/2012/12/13/border_web_20121213_0002_c0-43-720-462_s561x327.jpg?1afb64b1067aade7693a9e18f94938dd0f45eeb2");
+				pushpin.setOptions({
+					infobox: infobox
+				});
+         		map.entities.push(pushpin);
+			}
+
+			function GetMap() {
+				var options = {
+					credentials:"Au_kHqNbZbddwJUaoPTz-tfjHTfZtuPYiBifygz7YU3Y8QpyERxo_Qs2tnitGcGn",
+					center: new Microsoft.Maps.Location(41.884490, -87.632704),
+                    mapTypeId: Microsoft.Maps.MapTypeId.road,
+                    zoom: 15,
+					customizeOverlays: true,
+					theme: new Microsoft.Maps.Themes.BingTheme() 
+				};
+				map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), options);
+				Microsoft.Maps.loadModule('Microsoft.Maps.AdvancedShapes', { callback: shapesModuleLoaded });
+				insertPins();
+			}
 		}());
 	</script>
 </body>
