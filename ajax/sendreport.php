@@ -1,5 +1,5 @@
 <?php
-	$fp = fopen('../data/reports.csv', 'a+');
+	$fp = fopen('../data/reports.csv', 'a');
 	$myid = uniqid();
 
 	$uploadOk = 0;
