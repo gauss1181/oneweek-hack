@@ -26,25 +26,27 @@
 	</section>
 	
 	<script>
-		var header, pageContent, footer, goToHelp;
-		
-		WinJS.UI.Pages.define("/welcome/", {
-		    ready: function (element, options) {
-				pageContent = document.querySelector(".pageContent");
-				footer = document.querySelector("footer");
-				
-				goToHelp = document.getElementById("goToHelp");
-        		goToHelp.addEventListener("click", transitionBetweenPages, false);
-				
-				WinJS.UI.Animation.enterPage(pageContent, null);
-		    }
-		});
-		
-		function transitionBetweenPages() {
-		    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
-	            WinJS.Navigation.navigate("/help/");
-	        });
-		}
+		(function () {
+			var header, pageContent, footer, goToHelp;
+			
+			WinJS.UI.Pages.define("/welcome/", {
+			    ready: function (element, options) {
+					pageContent = document.querySelector(".pageContent");
+					footer = document.querySelector("footer");
+					
+					goToHelp = document.getElementById("goToHelp");
+	        		goToHelp.addEventListener("click", transitionBetweenPages, false);
+					
+					WinJS.UI.Animation.enterPage(pageContent, null);
+			    }
+			});
+			
+			function transitionBetweenPages() {
+			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
+		            WinJS.Navigation.navigate("/help/");
+		        });
+			}
+		}());
 	</script>
 </body>
 </html>

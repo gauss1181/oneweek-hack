@@ -33,52 +33,54 @@
 	</section>
 	
 	<script>
-		var pageContent, linkToHelp, goToPicker, goToForm, goToNews;
-		
-		WinJS.UI.Pages.define("/home/", {
-		    ready: function (element, options) {
-				pageContent = document.querySelector(".pageContent");
-				
-				linkToHelp = document.getElementById("linkToHelp");
-        		linkToHelp.addEventListener("click", transitionToHelp, false);
-				
-				goToPicker = document.getElementById("goToPicker");
-        		goToPicker.addEventListener("click", transitionToPicker, false);
-				
-				goToForm = document.getElementById("goToForm");
-        		goToForm.addEventListener("click", transitionToForm, false);
-				
-				goToNews = document.getElementById("goToNews");
-        		goToNews.addEventListener("click", transitionToNews, false);
-				
-				WinJS.UI.Animation.enterPage(pageContent, null);
-		    }
-		});
-		
-		function transitionToHelp(e) {
-			e.preventDefault();
-		    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
-	            WinJS.Navigation.navigate("/help/");
-	        });
-		}
-		
-		function transitionToPicker() {
-		    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
-	            WinJS.Navigation.navigate("/form/autofill-picture.php");
-	        });
-		}
-		
-		function transitionToForm() {
-		    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
-	            WinJS.Navigation.navigate("/form/");
-	        });
-		}
-		
-		function transitionToNews() {
-		    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
-	            WinJS.Navigation.navigate("/news/");
-	        });
-		}
+		(function () {
+			var pageContent, linkToHelp, goToPicker, goToForm, goToNews;
+			
+			WinJS.UI.Pages.define("/home/", {
+			    ready: function (element, options) {
+					pageContent = document.querySelector(".pageContent");
+					
+					linkToHelp = document.getElementById("linkToHelp");
+	        		linkToHelp.addEventListener("click", transitionToHelp, false);
+					
+					goToPicker = document.getElementById("goToPicker");
+	        		goToPicker.addEventListener("click", transitionToPicker, false);
+					
+					goToForm = document.getElementById("goToForm");
+	        		goToForm.addEventListener("click", transitionToForm, false);
+					
+					goToNews = document.getElementById("goToNews");
+	        		goToNews.addEventListener("click", transitionToNews, false);
+					
+					WinJS.UI.Animation.enterPage(pageContent, null);
+			    }
+			});
+			
+			function transitionToHelp(e) {
+				e.preventDefault();
+			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
+		            WinJS.Navigation.navigate("/help/");
+		        });
+			}
+			
+			function transitionToPicker() {
+			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
+		            WinJS.Navigation.navigate("/form/autofill-picture.php");
+		        });
+			}
+			
+			function transitionToForm() {
+			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
+		            WinJS.Navigation.navigate("/form/");
+		        });
+			}
+			
+			function transitionToNews() {
+			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
+		            WinJS.Navigation.navigate("/news/");
+		        });
+			}
+		}());
 	</script>
 </body>
 </html>

@@ -26,24 +26,26 @@
 	</section>
 	
 	<script>
-		var pageContent, goToHome;
-		
-		WinJS.UI.Pages.define("/news/", {
-		    ready: function (element, options) {
-				pageContent = document.querySelector(".pageContent");
-				
-				goToHome = document.getElementById("goToHome");
-        		goToHome.addEventListener("click", transitionBetweenPages, false);
-				
-				WinJS.UI.Animation.enterPage(pageContent, null);
-		    }
-		});
-		
-		function transitionBetweenPages() {
-		    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
-	            WinJS.Navigation.navigate("/home/");
-	        });
-		}
+		(function () {
+			var pageContent, goToHome;
+			
+			WinJS.UI.Pages.define("/news/", {
+			    ready: function (element, options) {
+					pageContent = document.querySelector(".pageContent");
+					
+					goToHome = document.getElementById("goToHome");
+	        		goToHome.addEventListener("click", transitionBetweenPages, false);
+					
+					WinJS.UI.Animation.enterPage(pageContent, null);
+			    }
+			});
+			
+			function transitionBetweenPages() {
+			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
+		            WinJS.Navigation.navigate("/home/");
+		        });
+			}
+		}());
 	</script>
 </body>
 </html>

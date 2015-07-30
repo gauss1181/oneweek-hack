@@ -14,10 +14,9 @@
     <meta name="msapplication-tap-highlight" content="no" />
 	<link href="/css/style.css" rel="stylesheet" /> 
 	<script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
-	
 	<script>
-		// Global variables
-		var g_location = null;
+		var g_gps = null;
+		var g_picture = null;
 	</script>
 </head>
 <body>
@@ -27,31 +26,33 @@
 
 	<div id="splash">
 		<div class="logo">TraffickTips</div>
-		<div class="copyright">&copy Microsoft Corporation</div>
+		<div class="copyright">&copy; Microsoft Corporation</div>
 	</div>
 
 	<div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/'}" ></div>
 	
 	<script>
-		var splash;
-		var splashLogo;
-		var splashCopyright;
-		
-		WinJS.UI.Pages.define("/", {
-		    ready: function (element, options) {
-		        splash = document.querySelector("#splash");
-				splashLogo = document.querySelector(".logo");
-				splashCopyright = document.querySelector(".copyright");
-		        setTimeout(transitionBetweenPages, 1000);
-				WinJS.UI.Animation.enterPage([splashLogo, splashCopyright], null);
-		    }
-		});
-		
-		function transitionBetweenPages() {
-		    WinJS.UI.Animation.exitPage([splash], null).done(function () {
-	            WinJS.Navigation.navigate("/welcome/");
-	        });
-		}
+		(function () {
+			var splash;
+			var splashLogo;
+			var splashCopyright;
+			
+			WinJS.UI.Pages.define("/", {
+			    ready: function (element, options) {
+			        splash = document.querySelector("#splash");
+					splashLogo = document.querySelector(".logo");
+					splashCopyright = document.querySelector(".copyright");
+			        setTimeout(transitionBetweenPages, 1000);
+					WinJS.UI.Animation.enterPage([splashLogo, splashCopyright], null);
+			    }
+			});
+			
+			function transitionBetweenPages() {
+			    WinJS.UI.Animation.exitPage([splash], null).done(function () {
+		            WinJS.Navigation.navigate("/welcome/");
+		        });
+			}
+		}());
 	</script>
 </body>
 </html>

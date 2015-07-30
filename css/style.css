@@ -33,6 +33,10 @@ button.win-button-primary { background: #CC0000 !important; color: #FFF; }
 a.button, button.win-button.action strong { text-transform: uppercase; }
 
 
+#pictureImage { background: #999; height: 120px; }
+#locationImage { background: #999; width: 120px; height: 120px; }
+
+
 #splash {
 	background: #EEE;
 	position: fixed;

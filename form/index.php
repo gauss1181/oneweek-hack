@@ -17,21 +17,22 @@
 	<section>
 		<h2>Report Suspicious Activity</h2>
 		
-		<form method="POST" enctype="multipart/form-data">
-			<div style="overflow: hidden">
-				<div style="position: relative; float: left; margin-right: 10px;">
-					<a href="/form/autofill-picture.php" id="changePicture" style="display: block;">
-						<img id="pictureImage" style="background: #999; height: 120px;" />
-						<span style="position: absolute; padding: 0 10px; bottom: 10px; right: 5px; text-decoration: none; border-radius: 10px; line-height: 20px; background: #FFF; display: block; text-align: center; color: #CC0000;">Change Photo</span>
-					</a>
-				</div>
-				<div style="position: relative; float: left;">
-					<a href="/form/autofill-location.php" id="changeLocation" style="display: block;">
-						<img id="locationImage" style="background: #999; width: 120px; height: 120px;" />
-						<span style="position: absolute; padding: 0 10px; bottom: 10px; right: 5px; text-decoration: none; border-radius: 10px; line-height: 20px; background: #FFF; display: block; text-align: center; color: #CC0000;">Adjust Location</span>
-					</a>
-				</div>
+		<div style="overflow: hidden">
+			<div style="position: relative; float: left; margin-right: 10px;">
+				<a href="/form/autofill-picture.php" id="changePicture" style="display: block;">
+					<img id="pictureImage" />
+					<span style="position: absolute; padding: 0 10px; bottom: 10px; right: 5px; text-decoration: none; border-radius: 10px; line-height: 20px; background: #FFF; display: block; text-align: center; color: #CC0000;">Change Photo</span>
+				</a>
 			</div>
+			<div style="position: relative; float: left;">
+				<a href="/form/autofill-location.php" id="changeLocation" style="display: block;">
+					<img id="locationImage" />
+					<span style="position: absolute; padding: 0 10px; bottom: 10px; right: 5px; text-decoration: none; border-radius: 10px; line-height: 20px; background: #FFF; display: block; text-align: center; color: #CC0000;">Adjust Location</span>
+				</a>
+			</div>
+		</div>
+
+		<form method="POST" enctype="multipart/form-data">
 			
 			<p>Please describe what makes this activity suspicious:<br />
 			<textarea name="why"></textarea></p>
@@ -49,66 +50,71 @@
 	</section>
 	
 	<script>
-		var pageContent, changePicture, cancelForm, goToThanks;
-		
-		WinJS.UI.Pages.define("/form/", {
-		    ready: function (element, options) {
-				pageContent = document.querySelector(".pageContent");
-				
-				changePicture = document.getElementById("changePicture");
-        		changePicture.addEventListener("click", transitionChangePicture, false);
-				
-				changeLocation = document.getElementById("changeLocation");
-        		changeLocation.addEventListener("click", transitionChangeLocation, false);
-				
-				goToThanks = document.getElementById("goToThanks");
-        		goToThanks.addEventListener("click", transitionToThanks, false);
-
-				cancelForm = document.getElementById("cancelForm");
-        		cancelForm.addEventListener("click", transitionToHome, false);
-
-				if (g_location !== null) {
-					document.getElementById("locationImage").src = "http://dev.virtualearth.net/REST/V1/Imagery/Map/Road/"+g_location.latitude+","+g_location.longitude+"/15?pushpin="+g_location.latitude+","+g_location.longitude+";55&mapSize=120,120&key=Au_kHqNbZbddwJUaoPTz-tfjHTfZtuPYiBifygz7YU3Y8QpyERxo_Qs2tnitGcGn";
-				}
-				if (g_picture !== null) {
-					var FR= new FileReader();
-			        FR.onload = function(e) {
-			             document.getElementById("pictureImage").src = e.target.result;
-			        };
-			        FR.readAsDataURL(g_picture.files[0]);
-				}
-				
-				WinJS.UI.Animation.enterPage(pageContent, null);
-		    }
-		});
-		
-		function transitionChangePicture(e) {
-			e.preventDefault();
-		    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
-	            WinJS.Navigation.navigate("/form/autofill-picture.php", "hasFormData");
-	        });
-		}
-		
-		function transitionChangeLocation(e) {
-			e.preventDefault();
-		    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
-	            WinJS.Navigation.navigate("/form/autofill-location.php", "hasFormData");
-	        });
-		}
-		
-		function transitionToThanks() {
-		    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
-	            WinJS.Navigation.navigate("/form/thanks.php");
-	        });
-		}
-		
-		function transitionToHome() {
-			if (confirm("Are you sure you want to discard this report?")) {
+		(function () {
+			var pageContent, changePicture, cancelForm, goToThanks;
+			
+			WinJS.UI.Pages.define("/form/", {
+			    ready: function (element, options) {
+					pageContent = document.querySelector(".pageContent");
+					
+					changePicture = document.getElementById("changePicture");
+	        		changePicture.addEventListener("click", transitionChangePicture, false);
+					if (g_picture) {
+						var FR= new FileReader();
+				        FR.onload = function(e) {
+				             document.getElementById("pictureImage").src = e.target.result;
+				        };
+				        FR.readAsDataURL(g_picture.files[0]);
+					}
+					
+					changeLocation = document.getElementById("changeLocation");
+	        		changeLocation.addEventListener("click", transitionChangeLocation, false);
+					if (g_gps) {
+						document.getElementById("locationImage").src = "http://dev.virtualearth.net/REST/V1/Imagery/Map/Road/"+g_gps.latitude+","+g_gps.longitude+"/15?pushpin="+g_gps.latitude+","+g_gps.longitude+";55&mapSize=120,120&key=Au_kHqNbZbddwJUaoPTz-tfjHTfZtuPYiBifygz7YU3Y8QpyERxo_Qs2tnitGcGn";
+					}
+					
+					goToThanks = document.getElementById("goToThanks");
+	        		goToThanks.addEventListener("click", transitionToThanks, false);
+	
+					cancelForm = document.getElementById("cancelForm");
+	        		cancelForm.addEventListener("click", transitionToHome, false);
+					
+					WinJS.UI.Animation.enterPage(pageContent, null);
+			    }
+			});
+			
+			function transitionChangePicture(e) {
+				e.preventDefault();
 			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
-		            WinJS.Navigation.navigate("/home/");
+		            WinJS.Navigation.navigate("/form/autofill-picture.php", "hasFormData");
 		        });
 			}
-		}
+			
+			function transitionChangeLocation(e) {
+				e.preventDefault();
+			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
+		            WinJS.Navigation.navigate("/form/autofill-location.php", "hasFormData");
+		        });
+			}
+			
+			function transitionToThanks() {
+				g_picture = null;
+				g_gps = null;
+			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
+		            WinJS.Navigation.navigate("/form/thanks.php");
+		        });
+			}
+			
+			function transitionToHome() {
+				if (confirm("Are you sure you want to discard this report?")) {
+					g_picture = null;
+					g_gps = null;
+				    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
+			            WinJS.Navigation.navigate("/home/");
+			        });
+				}
+			}
+		}());
 	</script>
 </body>
 </html>
