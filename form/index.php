@@ -91,8 +91,8 @@
 			
 			function transitionChangePicture(e) {
 				e.preventDefault();
-				dataToSend.append("why", whyField.value);
-				dataToSend.append("what", whatField.value);
+				g_why = whyField.value;
+				g_what = whatField.value;
 			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
 		            WinJS.Navigation.navigate("/form/autofill-picture.php", "hasFormData");
 		        });
@@ -100,8 +100,8 @@
 			
 			function transitionChangeLocation(e) {
 				e.preventDefault();
-				dataToSend.append("why", whyField.value);
-				dataToSend.append("what", whatField.value);
+				g_why = whyField.value;
+				g_what = whatField.value;
 			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
 		            WinJS.Navigation.navigate("/form/autofill-location.php", "hasFormData");
 		        });
