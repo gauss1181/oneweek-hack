@@ -19,21 +19,34 @@
 	</style>
 </head>
 <body>
-	<video id="camerastream"></video>
-	<div id="controls">
-		<a href="form.html" class="button"><strong>Take photo</strong></a>
-	</div>
+	<header>
+		<h1>TraffickTips</h1>
+	</header>
 	
-	<script>
-		var video = document.getElementById("camerastream");
-		navigator.getUserMedia({ video: true, audio: true },
-          function(stream) {
-            video.srcObject = stream;
-          },
-          function(err) {
-            console.log("Unable to get video stream!");
-          }
-      )
-	</script>
+	<section>
+		<h2>Report Suspicious Activity</h2>
+		<p>Please upload a picture or sketch of the activity or a target of interest related to your report.</p>
+		
+		<video id="camerastream"></video>
+	
+		<input type="file" />
+		<a href="form.html" class="button"><strong>Upload Photo</strong></a>
+		<a href="app.html" class="button"><strong>Cancel</strong></a>
+		
+		<script>/*
+			var video = document.getElementById("camerastream");
+			navigator.getUserMedia({ video: true, audio: true },
+	          function(stream) {
+	            video.srcObject = stream;
+	          },
+	          function(err) {
+	            console.log("Unable to get video stream!");
+	          }
+	      )*/
+		</script>
+	</section>
+	<footer>
+		&copy; Microsoft Corporation
+	</footer>
 </body>
 </html>
