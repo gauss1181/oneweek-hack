@@ -1,6 +1,6 @@
 # oneweek-hack
-Human trafficking is one of the most horrible crimes and is something we should all get together to try and solve. We are building an app that can, through crowdsourcing, help identify places that are targets of human trafficking.
+Human trafficking is a horrible crime and is still prevalent in many developed and developing parts of the world. Trafficking, particularly female trafficking is a major problem in many parts of America, and one we want to take a step towards solving. Through our app, we want to create social awareness amongst people about trafficking and also help fight human trafficking.
 
-Interface-wise: -Each user should be able to mark a particular residence/house which they think could be a target of trafficking.
+Traffick tips is a web and mobile based app that can provide helpful tips to deal with human trafficking. Traffick tips through crowdsourcing, allows users to mark areas (through either a picture or a manual entry) that they think could be targets of trafficking. Users can also look at an aggregate view of trafficking tips from other people, which is another great way of social awareness about sketchy activities going on.
 
--Visualization: Users should get a heat map kind of view about the sex trafficking regions and their density. So if multiple people marked a particular place/area, that would help the police organize the priority they could investigate in.
+We believe our app can make a lot of impact, in terms of both social awareness about trafficking, and also to combat human trafficking altogether.
