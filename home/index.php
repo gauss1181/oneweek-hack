@@ -25,7 +25,7 @@
 		<p>See suspicious activity? Use the buttons to report it. <a href="/help/" id="linkToHelp">What are the red flags I should look for?</a></p>
 
 		<button class="win-button win-button-primary action" id="goToPicker">
-			<strong>Use a Picture</strong>
+			<strong>Use a Photo or Sketch</strong>
 		</button>
 		<button class="win-button win-button-primary action" id="goToForm">
 			<strong>Manual Entry</strong>

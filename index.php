@@ -7,11 +7,18 @@
 	<script src="/js/ui.js"></script>
 	<script src="/js/default.js"></script>
 	<script src="/js/navigator.js"></script>
+	<script src="/js/exif.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="msapplication-tap-highlight" content="no" />
 	<link href="/css/style.css" rel="stylesheet" /> 
+	<script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
+	
+	<script>
+		// Global variables
+		var g_location = null;
+	</script>
 </head>
 <body>
 	<header>
