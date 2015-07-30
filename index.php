@@ -17,6 +17,8 @@
 	<script>
 		var g_gps = null;
 		var g_picture = null;
+		var g_why = "";
+		var g_what = "";
 	</script>
 </head>
 <body>

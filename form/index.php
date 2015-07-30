@@ -59,7 +59,9 @@
 					pageContent = document.querySelector(".pageContent");
 					
 					whyField = document.getElementById("whyField");
+					whyField.value = g_why;
 					whatField = document.getElementById("whatField");
+					whatField.value = g_what;
 					
 					changePicture = document.getElementById("changePicture");
 	        		changePicture.addEventListener("click", transitionChangePicture, false);
@@ -144,6 +146,8 @@
 			function afterUploadTransitionToThanks() {
 				g_picture = null;
 				g_gps = null;
+				g_why = "";
+				g_what = "";
 			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
 		            WinJS.Navigation.navigate("/form/thanks.php");
 		        });
@@ -153,6 +157,8 @@
 				if (confirm("Are you sure you want to discard this report?")) {
 					g_picture = null;
 					g_gps = null;
+					g_why = "";
+					g_what = "";
 				    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
 			            WinJS.Navigation.navigate("/home/");
 			        });

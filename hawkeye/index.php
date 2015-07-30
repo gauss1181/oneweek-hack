@@ -65,10 +65,12 @@
 			function insertPin(lat, long, imgsrc) {
 				var location = new Microsoft.Maps.Location(lat, long);
 				var pushpin = new Microsoft.Maps.Pushpin(location);
-				var infobox = makeInfobox(pushpin, imgsrc);
-				pushpin.setOptions({
-					infobox: infobox
-				});
+				if (imgsrc !== null) {
+					var infobox = makeInfobox(pushpin, imgsrc);
+					pushpin.setOptions({
+						infobox: infobox
+					});
+				}
          		map.entities.push(pushpin);
 			}
 
