@@ -1,0 +1,64 @@
+@font-face {
+	font-family: "Streetvertising Bold";
+	src: url(/fonts/Streetvertising%20Bold%20public.ttf);
+}
+
+body, textarea { margin: 0; font: 10pt/1.5 "Segoe UI", Arial, sans-serif; }
+html { overflow-y: auto; -ms-overflow-style: -ms-autohiding-scrollbar; }
+#mapDiv { position: fixed; top: 50px; left: 0; bottom: 0; right: 0; }
+header { padding: 15px; line-height: 50px; background: #EEE; font-size: 120%; color: #FFF; }
+section, footer { padding: 15px; }
+article { background: #E6E6CC; padding: 15px; margin: 1em 0; }
+h1 { margin: 0; text-indent: -999999px; background: url(/img/logo.png) no-repeat; background-size: contain; height: 50px; }
+h3 { margin: 0; font-size: 100%;}
+
+h1, h2 { font-family: "Streetvertising Bold"; text-transform: uppercase; }
+h2 { color: #CC0000; font-size: 180%; margin-bottom: 0.5em; }
+
+.win-disposable { top: 0; }
+section { padding-top: 80px; }
+
+textarea {
+	width: 100%;
+	display: block;
+	border: 0;
+	background: #EEE;
+	padding: 5px;
+	box-sizing: border-box;
+	font-size: 120%;
+}
+
+a.button,  button.win-button.action { width: 100%; margin: 1em auto; text-decoration: none; padding: 10px 15px; font-size: 120%; display: block; text-align: center; }
+button.win-button-primary { background: #CC0000 !important; color: #FFF; }
+a.button, button.win-button.action strong { text-transform: uppercase; }
+
+
+#splash {
+	background: #EEE;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+#splash .logo {
+	position: absolute;
+	top: 30%;
+	left: 15%;
+	right: 15%;
+	bottom: 30%;
+	background: url(/img/logo.png) center no-repeat;
+	margin-top: -25px;
+	padding-bottom: 50px;
+	background-size: contain;
+	text-indent: -999999px;
+}
+
+#splash .copyright {
+	position: absolute;
+	bottom: 10%;
+	width: 100%;
+	text-align: center;
+	opacity: 0.5;
+}
