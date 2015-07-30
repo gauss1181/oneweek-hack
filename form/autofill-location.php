@@ -32,6 +32,7 @@
 			var pageContent, backFormLocation, updateForm;
 			var hasFormData = false;
 			var gps = null;
+			var pushpin;
 	
 			function InitMap() {
 				var map;
@@ -50,9 +51,8 @@
 					var options = {
 						draggable: true
 					}
-					var pushpin = new Microsoft.Maps.Pushpin(gps, options);
+					pushpin = new Microsoft.Maps.Pushpin(gps, options);
 	         		map.entities.push(pushpin);
-					gps = pushpin.getLocation();
 				}
 	
 				function GetMap() {
@@ -87,6 +87,7 @@
 			});
 			
 			function transitionToForm() {
+				gps = pushpin.getLocation();
 				g_gps = { latitude: gps.latitude, longitude: gps.longitude };
 			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
 		            WinJS.Navigation.navigate("/form/");
