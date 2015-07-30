@@ -13,27 +13,27 @@
 		
 		a.button { margin: 1em 0; text-decoration: none; background: #CC0000; padding: 10px 15px; font-size: 120%; color: #FFF; display: block; text-align: center; }
 		a.button strong { text-transform: uppercase; }
+		
+		#controls { position: fixed; bottom: 0; left: 0; right: 0; padding: 5px; background: #FFF; opacity: 0.8; text-align: center; }
+		video { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
 	</style>
 </head>
 <body>
-	<header>
-		<h1>TraffickTips</h1>
-	</header>
+	<video id="camerastream"></video>
+	<div id="controls">
+		<a href="form.html" class="button"><strong>Take photo</strong></a>
+	</div>
 	
-	<section>		
-		<article>
-			<h3><a href="police.html">7/30 - Message from your local police department</a></h3>
-		</article>
-		
-		<p>See suspicious activity? Use the buttons to report it. <a href="help.html">What sort of behavior should I look for?</a></p>
-		
-		<a href="picture.html" class="button"><strong>Use a Picture</strong></a>
-		<a href="form.html" class="button"><strong>Manual Entry</strong></a>
-		
-	</section>
-	
-	<footer>
-		&copy; Microsoft Corporation
-	</footer>
+	<script>
+		var video = document.getElementById("camerastream");
+		navigator.getUserMedia({ video: true, audio: true },
+          function(stream) {
+            video.srcObject = stream;
+          },
+          function(err) {
+            console.log("Unable to get video stream!");
+          }
+      )
+	</script>
 </body>
 </html>
