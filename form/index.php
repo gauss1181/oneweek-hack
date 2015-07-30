@@ -35,10 +35,10 @@
 		<form method="POST" enctype="multipart/form-data">
 			
 			<p>Please describe what makes this activity suspicious:<br />
-			<textarea name="why"></textarea></p>
+			<textarea name="why" id="whyField"></textarea></p>
 			
 			<p>Please give us information to help us identify the target. Include any IDs, names, and appearance.<br />
-			<textarea name="what"></textarea></p>
+			<textarea name="what" id="whatField"></textarea></p>
 		</form>	
 		
 		<button class="win-button win-button-primary action" id="goToThanks">
@@ -52,10 +52,14 @@
 	<script>
 		(function () {
 			var pageContent, changePicture, cancelForm, goToThanks;
+			var whyField, whatField;
 			
 			WinJS.UI.Pages.define("/form/", {
 			    ready: function (element, options) {
 					pageContent = document.querySelector(".pageContent");
+					
+					whyField = document.getElementById("whyField");
+					whatField = document.getElementById("whatField");
 					
 					changePicture = document.getElementById("changePicture");
 	        		changePicture.addEventListener("click", transitionChangePicture, false);
@@ -98,6 +102,46 @@
 			}
 			
 			function transitionToThanks() {
+				if (!g_gps) {
+					alert("Please identify a location for this target.");
+					return;
+				}
+				if (whatField.value === "") {
+					alert("Please give a description of the target you're referring to.");
+					return;
+				}
+				if (whyField.value === "") {
+					alert("Please let us know what make you think this target is suspicious.");
+					return;
+				}
+
+				var dataToSend = new FormData();
+				dataToSend.append("latitude", g_gps.latitude);
+				dataToSend.append("longitude", g_gps.longitude)
+				dataToSend.append("why", whyField.value);
+				dataToSend.append("what", whatField.value);
+					
+				if (g_picture) {
+					var url = URL.createObjectURL(g_picture.files[0]);
+					WinJS.xhr({ url: url, responseType: 'blob' }).done(function (req) {
+		    			var blob = req.response;
+						dataToSend.append("picture", blob, g_picture.files[0].name);
+						WinJS.xhr({
+							url: "/ajax/sendreport.php",
+							type: "POST",
+							data: dataToSend
+						}).then(afterUploadTransitionToThanks);
+					});
+				} else {
+					WinJS.xhr({
+						url: "/ajax/sendreport.php",
+						type: "POST",
+						data: dataToSend
+					}).then(afterUploadTransitionToThanks);
+				}
+			}
+			
+			function afterUploadTransitionToThanks() {
 				g_picture = null;
 				g_gps = null;
 			    WinJS.UI.Animation.exitPage(pageContent, null).done(function () {
