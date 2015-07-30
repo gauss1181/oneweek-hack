@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TraffickTips</title>
+	<style>
+		body, textarea { margin: 0; font: 10pt/1.5 sans-serif; }
+		#mapDiv { position: fixed; top: 50px; left: 0; bottom: 0; right: 0; }
+		header { padding: 15px; line-height: 20px; background: #EEE; font-size: 120%; color: #FFF; }
+		section, footer { padding: 15px; }
+		article { background: #E6E6CC; padding: 15px; margin: 1em 0; }
+		h1 { margin: 0; text-indent: -999999px; background: url(logo.png) no-repeat; background-size: contain; height: 50px; }
+		h3 { margin: 0; font-size: 100%;}
+		
+		textarea {
+			width: 100%;
+			display: block;
+			border: 0;
+			background: #EEE;
+			padding: 5px;
+			font-size: 120%;
+		}
+		
+		a.button { margin: 1em 0; text-decoration: none; background: #CC0000; padding: 10px 15px; font-size: 120%; color: #FFF; display: block; text-align: center; }
+		a.button strong { text-transform: uppercase; }
+	</style>
+</head>
+<body>
+	<header>
+		<h1>TraffickTips</h1>
+	</header>
+	
+	<section>
+		<h2>Report Suspicious Activity</h2>
+		
+		<form>
+			<div style="overflow: hidden">
+				<div style="position: relative; float: left;">
+					<a href="picture.html" style="display: block;">
+						<img src="sketchy.jpg" style="width: 100%; max-height: 120px;" />
+						<span style="position: absolute; padding: 0 10px; bottom: 10px; right: 5px; text-decoration: none; border-radius: 10px; line-height: 20px; background: #FFF; display: block; text-align: center; color: #CC0000;">Change Photo</span>
+					</a>
+				</div>
+				<div style="position: relative; float: left; margin-left: 10px;">
+					<a href="hawkeye.html" style="display: block;">
+						<img src="location.png" style="width: 100%; max-height: 120px;" />
+						<span style="position: absolute; padding: 0 10px; bottom: 10px; right: 5px; text-decoration: none; border-radius: 10px; line-height: 20px; background: #FFF; display: block; text-align: center; color: #CC0000;">Adjust Location</span>
+					</a>
+				</div>
+			</div>
+			
+			
+			<p>Please describe what makes this activity suspicious:<br />
+			<textarea></textarea></p>
+			
+			<p>Please give us information to help us identify the target. Include any IDs, names, and appearance.<br />
+			<textarea></textarea></p>
+		</form>	
+		
+		<a href="thanks.html" class="button"><strong>Submit</strong></a>
+		<a href="app.html" class="button" onclick="return confirm(\"Are you sure?\")"><strong>Cancel</strong></a>
+	</section>
+	
+	<footer>
+		&copy; Microsoft Corporation
+	</footer>
+</body>
+</html>
